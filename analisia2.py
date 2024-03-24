@@ -6,7 +6,7 @@ import numpy as np
 
 
 
-dados = pd.read_excel("cornelioprocopio.xlsx")
+dados = pd.read_csv("dadosEmpresas.csv")
 
 segmento = dados["segmento"].value_counts()
 
