@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-import matplotlib.pyplot as plt
+
 
 dados = pd.read_excel("cornelioprocopio.xlsx")
 
@@ -17,17 +17,7 @@ bairroMaiorQue10 = bairro[bairro>10]
 
 st.title("Projeto Analisia\n")
 st.subheader("\nGráfico de análise da densidade das empresas por área: ")
-# Criar o gráfico de barras 
-fig, ax = plt.subplots(figsize=(10, 6))
-bairroMaiorQue10.plot(kind='bar', color='skyblue', ax=ax)
-plt.xlabel('Bairro')
-plt.ylabel('Número de Empresas')
-plt.title('Número de Empresas por Bairro (Bairros com mais de 10 empresas)')
-plt.xticks(rotation=90)
-plt.tight_layout()
-
-# Exibir o gráfico usando Streamlit
-st.pyplot(fig)
+st.bar_chart(bairroMaiorQue10)
 
 st.subheader('Análise de Empresas por Bairro')
 
@@ -45,14 +35,7 @@ st.write('**Oportunidades de desenvolvimento:** Bairros com um número menor de 
 # Exibir os dados de empresas por segmento
 st.title("\nDistribuição de empresas por segmento na cidade de Cornélio Procópio:\n")
 st.subheader("Número de Empresas por Segmento:")
-dados_por_segmento = {
-    'Serviços': 2291,
-    'Comércio': 1683,
-    'Indústria': 386,
-    'Construção Civil': 329,
-    'Agropecuária': 39
-}
-st.write(pd.DataFrame(dados_por_segmento.items(), columns=['Segmento', 'Número de Empresas']))
+st.bar_chart(segmento)
 
 # Análise detalhada por segmento
 st.subheader("\nAnálise detalhada por segmento:\n")
@@ -69,14 +52,8 @@ st.write("**Agropecuária:** Com 39 empresas, o setor agropecuário é o menos r
 
 
 # Exibindo o gráfico de barras dos segmentos
-st.title("\nGráfico de Distribuição de Empresas por Segmento:\n")
-fig2, ax2 = plt.subplots(figsize=(10, 6))
-plt.barh(list(dados_por_segmento.keys()), list(dados_por_segmento.values()), color='skyblue')
-plt.xlabel('Número de Empresas')
-plt.ylabel('Segmento')
-plt.title('Número de Empresas por Segmento')
-plt.gca().invert_yaxis()  # Inverter o eixo y para que os segmentos com mais empresas fiquem no topo
-st.pyplot(fig2)
+st.title("Gráfico ramo de atividades:\n")
+st.bar_chart(ramoDeAtividade)
 
 st.write("\nDiversificação Econômica: A cidade possui uma ampla diversificação econômica, com representação significativa em vários setores, incluindo serviços, varejo, indústria, educação e saúde. Isso indica uma economia robusta e resiliente, menos suscetível a flutuações em um único setor.")
 
