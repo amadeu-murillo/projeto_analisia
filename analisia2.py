@@ -4,6 +4,8 @@ import numpy as np
 
 
 
+
+
 dados = pd.read_excel("cornelioprocopio.xlsx")
 
 segmento = dados["segmento"].value_counts()
